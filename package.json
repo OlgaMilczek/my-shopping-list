@@ -7,7 +7,7 @@
     "compile:sass": "node-sass sass/main.scss css/style.css",
     "compile:sass watch": "node-sass sass/main.scss css/style.css -w",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Olga Milczek",
   "license": "ISC",
@@ -15,5 +15,10 @@
     "eslint": "^7.16.0",
     "sass": "^1.30.0",
     "webpack": "^5.11.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
   }
 }
