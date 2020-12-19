@@ -4,14 +4,14 @@
   "description": "Shopping list app. Recturutation project ",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css",
-    "compile:sass watch": "node-sass sass/main.scss css/style.css -w",
+    "compile:sass": "node-sass public/sass/main.scss public/css/style.css -w",
     "build": "webpack",
     "test": "jest"
   },
   "author": "Olga Milczek",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "eslint": "^7.16.0",
     "sass": "^1.30.0",
     "webpack": "^5.11.0"
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "babel-jest": "^26.6.3",
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "node-sass": "^5.0.0"
   }
 }
