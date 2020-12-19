@@ -41,8 +41,8 @@ body {
   background-color: #f7f7f7; }
 
 body {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   color: #777; }
 
 .heading-primary {
@@ -164,9 +164,12 @@ body {
   border-radius: 20px;
   padding: 5rem;
   z-index: 10;
-  width: 40%;
+  max-width: 40%;
+  min-width: 55rem;
   box-shadow: 0px 0px 10px 0px rgba(54, 54, 54, 0.75);
   transition: 0.3s; }
+  .form .inactive {
+    transform: translate(-50%, -50%) scale(0); }
   .form__group:not(:last-child) {
     margin-bottom: 2rem; }
   .form__input {
@@ -191,7 +194,7 @@ body {
       color: #999; }
   .form__label {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-left: 2rem;
     margin-bottom: 1rem;
     display: block;
@@ -244,6 +247,8 @@ body {
     border-radius: 2px;
     background-color: rgba(255, 255, 255, 0.8);
     border: none; }
+    .form__select option:hover {
+      background-color: red; }
 
 .overlay {
   position: fixed;
