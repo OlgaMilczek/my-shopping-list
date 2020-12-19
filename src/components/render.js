@@ -6,7 +6,7 @@ function renderList(shoppingList) {
     const shoppingListContainer = document.querySelector('.shopping-list');
     shoppingListContainer.innerHTML = '';
 
-    for (let category in shoppingList) {
+    for (let category in shoppingList.productsDict) {
         let categoryListContainer = createElementWithClasses('div', ['shopping-list__category']);
         let categoryHeadingContainer = createElementWithClasses('div', ['shopping-list__category-name']);
         const categoryName = document.createElement('h4');
@@ -22,9 +22,9 @@ function renderList(shoppingList) {
         });
         
         categoryHeadingContainer = appendToContainer(categoryHeadingContainer, [categoryName, btnGroup]);
-        categoryListContainer = appendToContainer(categoryListContainer, [categoryHeadingContainer]);
+        categoryListContainer.appendChild(categoryHeadingContainer);
 
-        shoppingList[category].forEach(product => {
+        shoppingList.productsDict[category].forEach(product => {
             let elementContainer = createElementWithClasses('div', ['shopping-list__element']);
             let leftContainer = createElementWithClasses('div', ['u-flex-left']);
             let rightContainer = createElementWithClasses('div', ['u-flex-right', 'shopping-list__element-details']);
@@ -55,12 +55,16 @@ function renderList(shoppingList) {
 
             //Adding elements to left side
             leftContainer = appendToContainer(leftContainer, [checkbox, label, inputSpan]);
+            
             //Adding elements to right side
             rightContainer = appendToContainer(rightContainer, [quantity, btnGroup]);
+            
             //Adding to element container
             elementContainer = appendToContainer(elementContainer, [leftContainer, rightContainer]);
             categoryListContainer.appendChild(elementContainer);
         });
+        //Adding to general container 
+        shoppingListContainer.appendChild(categoryListContainer);
     }
 }
 

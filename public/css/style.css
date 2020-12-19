@@ -74,12 +74,14 @@ body {
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
+  .shopping-list__category:not(:first-child) {
+    padding-top: 2rem; }
   .shopping-list__category-name {
     font-size: 2rem;
     padding-bottom: 1rem;
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid #bbb; }
+    border-bottom: 1px solid #bbb; }
   .shopping-list__element {
     display: flex;
     justify-content: space-between;
@@ -259,7 +261,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   pointer-events: none;
   z-index: 5;
-  opacity: 1; }
+  opacity: 0; }
   .overlay .active {
     pointer-events: all;
     opacity: 1; }

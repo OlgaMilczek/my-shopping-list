@@ -27,6 +27,7 @@ function createButton(classArray, id, textContent) {
 function createIconButton(classArray, iconClasses) {
     const button = createElementWithClasses('button', classArray);
     const icon = createElementWithClasses('i', iconClasses);
+    button.appendChild(icon);
     return button;
 
 }

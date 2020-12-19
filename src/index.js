@@ -1,10 +1,11 @@
-import  {ShoppingList} from './components/logic';
-import {PRODUCT_CATEGORIES, UNITS} from './components/constants';
-
+import {ShoppingList} from './components/logic';
 import {renderList} from './components/render';
 import {createNewCategory, creteNewProduct} from './components/forms-add-new';
 
-const myShoppingList = new ShoppingList(PRODUCT_CATEGORIES);
+//import {PRODUCTCATEGORIES} from './components/constants.js';
+const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
+
+const myShoppingList = new ShoppingList(PRODUCTCATEGORIES);
 
 //DOM manipulator. Buttons
 const addNewProduct = document.getElementById('adding-buttons-product');
