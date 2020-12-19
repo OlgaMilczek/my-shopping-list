@@ -4,8 +4,16 @@
   "description": "Shopping list app. Recturutation project ",
   "main": "index.js",
   "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css",
+    "compile:sass watch": "node-sass sass/main.scss css/style.css -w",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Olga Milczek",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^7.16.0",
+    "sass": "^1.30.0",
+    "webpack": "^5.11.0"
+  }
 }
