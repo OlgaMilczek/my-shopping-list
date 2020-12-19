@@ -42,6 +42,16 @@ class ShoppingList {
         this.productsDict[newCategory] = [];
     }
 
+    editCategory(oldCategoryName, newCategoryName) {
+        this.productsDict[newCategoryName] = this.productsDict[oldCategoryName];
+        delete this.productsDict[oldCategoryName];
+    }
+
+    deleteCategory(category) {
+        delete this.productsDict[category];
+        this.sumTotal();
+    }
+
     sumTotal() {
         /* because shopping list isn't be very big (more than 10^6)
         it shouldn't be a problem to count total after each operation. */
