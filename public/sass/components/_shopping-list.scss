@@ -1,0 +1,61 @@
+.shopping-list {
+    margin: auto;
+    width: $default-width;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .1);
+
+    &__category-name {
+        font-size: 2rem;
+        padding-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid $text-color-secondary;
+    }
+
+    &__element {
+        display: flex;
+        justify-content: space-between;
+        font-size: $default-font-size;
+        padding: 1rem 0 1rem 2rem;
+    }
+
+    &__checkbox-input {
+        display: none;
+    }
+
+    &__checkbox-mark {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 2rem;
+        width: 2rem;
+        text-align: center;
+        color: transparent;
+        background-color: $color-gray-light-2;
+
+        &:hover {
+            background-color: $color-gray-dark;
+        }
+    }
+
+    &__checkbox-label {
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative;
+        padding-left: 3rem;
+    }
+
+    &__checkbox-input:checked ~ &__checkbox-label {
+        text-decoration: line-through;
+        
+        & > span {
+            background-color: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    &__element-details {
+        
+    }
+}

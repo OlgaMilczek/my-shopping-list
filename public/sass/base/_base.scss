@@ -1,0 +1,39 @@
+
+*,
+*::after, 
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+//To prevent black outline in google chrome
+*,
+*:focus,
+*:hover{
+    outline:none;
+}
+
+html {
+    //This defines what 1 rem is 1rem = 10px. 
+    font-size: 62.5%;
+
+    @include respond(tab-land) {
+        font-size: 56.25%; // 1rem = 9px 
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%; // 1rem = 8px 
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem = 12px 
+    }
+}
+
+body {
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: $color-gray-light-1;
+}
+

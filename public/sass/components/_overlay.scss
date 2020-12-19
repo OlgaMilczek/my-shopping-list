@@ -1,0 +1,16 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-black, .7);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 1;
+
+    & .active {
+        pointer-events: all;
+        opacity: 1;
+    }
+}
