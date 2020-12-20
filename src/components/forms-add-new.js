@@ -4,7 +4,7 @@ import {appendToContainer} from './DOMmanipulator.js';
 import {UNITS} from './constants';
 
 
-function createNewCategory(shoppingList) {
+function createNewCategoryForm(shoppingList) {
     const categoryForm = creatCategoryForm();
     function onSubmit(e) {
         e.preventDefault();
@@ -13,15 +13,12 @@ function createNewCategory(shoppingList) {
         renderList(shoppingList);
         cancelForm(categoryForm.form);
         categoryForm.form.removeEventListener('submit', onSubmit);
-        
     }
-    
     categoryForm.form.addEventListener('submit', onSubmit);
-
     appendToContainer(categoryForm.form, [categoryForm.nameGroup, categoryForm.buttonGroup]);
 }
 
-function creteNewProduct(shoppingList) {
+function creteNewProductForm(shoppingList) {
     const productForm = createProductForm(shoppingList.categoryList);
     const radios = productForm.radioContainer.querySelectorAll('input[name="units"]');
     let units = null;
@@ -50,7 +47,6 @@ function creteNewProduct(shoppingList) {
         cancelForm(productForm.form);
         productForm.form.removeEventListener('submit', onSubmit);
     }
-
     productForm.form.addEventListener('submit', onSubmit);
 
     appendToContainer(productForm.form, 
@@ -63,4 +59,4 @@ function creteNewProduct(shoppingList) {
         ]);
 }
 
-export {createNewCategory, creteNewProduct}; 
+export {createNewCategoryForm , creteNewProductForm}; 

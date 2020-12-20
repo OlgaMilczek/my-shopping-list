@@ -5,4 +5,6 @@ const UNITS = {
     pcs: 'pcs.'
 };
 
-export {PRODUCTCATEGORIES, UNITS};
+const NAME = 'myShopping';
+
+export {PRODUCTCATEGORIES, UNITS, NAME};

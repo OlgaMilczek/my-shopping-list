@@ -97,4 +97,4 @@ class ShoppingList {
     }
 }
 
-export {ShoppingList};
+export {ShoppingList, Category, Product};

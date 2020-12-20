@@ -1,22 +1,28 @@
 import {ShoppingList} from './components/logic';
 import {renderList} from './components/render';
-import {createNewCategory, creteNewProduct} from './components/forms-add-new';
-import {PRODUCTCATEGORIES} from './components/constants';
+import {createNewCategoryForm, creteNewProductForm} from './components/forms-add-new';
+import {checkStorage, getStorage} from './components/localStorage';
 
-//const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
+import {PRODUCTCATEGORIES, NAME} from './components/constants';
 
-const myShoppingList = new ShoppingList(PRODUCTCATEGORIES);
+let myShoppingList; 
+
+if (checkStorage(NAME)) {
+    myShoppingList = getStorage(NAME);
+} else {
+    myShoppingList = new ShoppingList(PRODUCTCATEGORIES);
+}
 
 //DOM manipulator. Buttons
 const addNewProduct = document.getElementById('adding-buttons-product');
 const addCategory = document.getElementById('adding-buttons-category');
 
-//Add event lisiners
+//Add event listeners
 addNewProduct.addEventListener('click', () => {
-    creteNewProduct(myShoppingList);
+    creteNewProductForm(myShoppingList);
 });
 addCategory.addEventListener('click', () => {
-    createNewCategory(myShoppingList);
+    createNewCategoryForm(myShoppingList);
 });
 
 renderList(myShoppingList);

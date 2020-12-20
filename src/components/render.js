@@ -1,6 +1,9 @@
 import {editCategoryForm, editProductForm} from './forms-edit';
 import {createElementWithClasses, creteIconButtonGroup, createElementWithAttributes, appendToContainer, creatLabel} from './DOMmanipulator.js';
 
+import {setStorage} from './localStorage';
+import {NAME} from './constants';
+
 function renderList(shoppingList) {
     
     const shoppingListContainer = document.querySelector('.shopping-list');
@@ -40,6 +43,8 @@ function renderList(shoppingList) {
             checkbox.checked = product.bought;
             checkbox.addEventListener('change', () => {
                 product.editBought();
+                console.log('bought');
+                setStorage(NAME, shoppingList);
             });
             let label = creatLabel(['shopping-list__checkbox-label'], product.name, product.name);
             let inputSpan = createElementWithClasses('span', ['shopping-list__checkbox-mark']);
@@ -79,6 +84,7 @@ function renderList(shoppingList) {
 
     totalContainer.appendChild(total);
     shoppingListContainer.appendChild(totalContainer);
+    setStorage(NAME, shoppingList);
 }
 
 export {renderList};

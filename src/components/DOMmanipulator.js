@@ -1,8 +1,6 @@
 function createElementWithClasses(type, classArray) {
     const element = document.createElement(type);
-    
     for(let i in classArray){
-        
         element.classList.add(classArray[i]);
     }
     return element;
@@ -20,7 +18,6 @@ function createButton(classArray, id, textContent) {
     const button = createElementWithClasses('button', classArray);
     button.setAttribute('id', id);
     button.textContent = textContent;
-
     return button;
 }
 
@@ -29,7 +26,6 @@ function createIconButton(classArray, iconClasses) {
     const icon = createElementWithClasses('i', iconClasses);
     button.appendChild(icon);
     return button;
-
 }
 
 function appendToContainer(container, elementsArray) {
@@ -43,7 +39,6 @@ function creatLabel(classArray, forAttribute, textContent) {
     const label = createElementWithClasses('label', classArray);
     label.setAttribute('for', forAttribute);
     label.textContent = textContent;
-
     return label;
 }
 

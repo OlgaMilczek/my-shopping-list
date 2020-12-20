@@ -8,17 +8,16 @@ function editCategoryForm(shoppingList, editedCategory) {
     //Change input value for old existing name
     categoryForm.nameInput.value = editedCategory.name;
     categoryForm.addButton.textContent = 'Edit category';
-    categoryForm.addButton.addEventListener('click', () => {
+
+    function onSubmit(e) {
+        e.preventDefault();
         const newCategoryName = categoryForm.nameInput.value;
-        if (newCategoryName === '') {
-            alert('Enter a category name');
-        }
-        else {
-            editedCategory.changeName(newCategoryName);
-            renderList(shoppingList);
-            cancelForm(categoryForm.form);
-        }
-    });
+        editedCategory.changeName(newCategoryName);
+        renderList(shoppingList);
+        cancelForm(categoryForm.form);
+        categoryForm.form.removeEventListener('submit', onSubmit);
+    }
+    categoryForm.form.addEventListener('submit', onSubmit);
 
     appendToContainer(categoryForm.form, [categoryForm.nameGroup, categoryForm.buttonGroup]);
 }

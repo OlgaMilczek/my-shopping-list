@@ -12,7 +12,7 @@
 600 - 900px- tablets
 900-1200px - tablet landscape 
 [1200-1800] - default 
-1800px + - big desktops
+2000px + - big desktops
 
     Breakpoint argumetnt choices: 
     - phone
@@ -32,5 +32,5 @@
         @media (max-width: 75em) { @content } }; //1200px
 
     @if $breakpoint == big-desktop {
-        @media (min-width: 112.5em) { @content }}; //1800 px
+        @media (min-width: 125em) { @content }}; //2000 px
 };

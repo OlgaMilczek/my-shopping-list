@@ -3,7 +3,7 @@
 600 - 900px- tablets
 900-1200px - tablet landscape 
 [1200-1800] - default 
-1800px + - big desktops
+2000px + - big desktops
 
     Breakpoint argumetnt choices: 
     - phone
@@ -31,14 +31,16 @@ html {
   @media (max-width: 56.25em) {
     html {
       font-size: 50%; } }
-  @media (min-width: 112.5em) {
+  @media (min-width: 125em) {
     html {
       font-size: 75%; } }
 
 body {
   min-height: 100vh;
   box-sizing: border-box;
-  background-color: #f7f7f7; }
+  background-color: #f7f7f7;
+  position: relative;
+  padding-bottom: 10rem; }
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -296,6 +298,7 @@ body {
 .footer {
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100vw;
   padding: 1rem;
   background-image: linear-gradient(to bottom, rgba(153, 153, 153, 0.5), rgba(51, 51, 51, 0.5)); }
