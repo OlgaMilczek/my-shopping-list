@@ -3,20 +3,20 @@ import {cancelForm, creatCategoryForm, createProductForm} from './forms-element-
 import {appendToContainer} from './DOMmanipulator.js';
 import {UNITS} from './constants';
 
+
 function createNewCategory(shoppingList) {
     const categoryForm = creatCategoryForm();
-    
-    categoryForm.addButton.addEventListener('click', () => {
+    function onSubmit(e) {
+        e.preventDefault();
         const categoryName = categoryForm.nameInput.value;
-        if (categoryName === '') {
-            alert('Enter a category name');
-        }
-        else {
-            shoppingList.addCategory(categoryName);
-            renderList(shoppingList);
-            cancelForm(categoryForm.form);
-        }
-    });
+        shoppingList.addCategory(categoryName);
+        renderList(shoppingList);
+        cancelForm(categoryForm.form);
+        categoryForm.form.removeEventListener('submit', onSubmit);
+        
+    }
+    
+    categoryForm.form.addEventListener('submit', onSubmit);
 
     appendToContainer(categoryForm.form, [categoryForm.nameGroup, categoryForm.buttonGroup]);
 }
@@ -30,31 +30,28 @@ function creteNewProduct(shoppingList) {
         radio.addEventListener('change', () => {
             if (radio.value === UNITS.weight && radio.checked) {
                 units = radio.value;
-                productForm.quantityInput.setAttribute('step', '0.01');
             } else {
                 units = radio.value;
-                productForm.quantityInput.setAttribute('step', '1');
             }
         });
     }); 
 
-    productForm.addButton.addEventListener('click', () => {
+    function onSubmit(e) {
+        e.preventDefault();
         const productName = productForm.nameInput.value;
         const productQuantity = productForm.quantityInput.value;
         const categoryName = productForm.categorySelector.value;
 
-        if (productName === '' || productQuantity === '') {
-            alert('Enter name and quantity');
-        } else if (units === null) {
-            alert('Choose units');
-        } else {
-            const category = shoppingList.categoryList.filter(category => category.name === categoryName)[0];
-            const quantityNumber = parseFloat(productQuantity);
-            shoppingList.addProduct(productName, quantityNumber, units, category);
-            renderList(shoppingList);
-            cancelForm(productForm.form);
-        }
-    });
+        const category = shoppingList.categoryList.filter(category => category.name === categoryName)[0];
+        const quantityNumber = parseFloat(productQuantity);
+        shoppingList.addProduct(productName, quantityNumber, units, category);
+
+        renderList(shoppingList);
+        cancelForm(productForm.form);
+        productForm.form.removeEventListener('submit', onSubmit);
+    }
+
+    productForm.form.addEventListener('submit', onSubmit);
 
     appendToContainer(productForm.form, 
         [

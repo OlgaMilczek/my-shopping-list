@@ -16,6 +16,10 @@ class Product {
         this.name = newName;
     }
 
+    editUnits(newUnits) {
+        this.units = newUnits;
+    }
+
     editBought() {
         this.bought = !this.bought;
     }

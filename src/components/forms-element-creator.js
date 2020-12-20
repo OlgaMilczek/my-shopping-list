@@ -48,14 +48,16 @@ function creatCategoryForm() {
     const nameInput = createElementWithAttributes('input', 
         [
             ['name', 'category-name'],
-            ['placeholder', 'Enter category name']
+            ['placeholder', 'Enter category name'], 
+            ['class', 'form__input']
         ]);
-    nameInput.classList.add('form__input');  
+    nameInput.required = true;
     //Crete div for label and input
     let nameGroup = createElementWithClasses('div', ['form__group']);
     appendToContainer(nameGroup, [nameLabel, nameInput]);
 
     const addButton = createButton(['btn', 'btn__add'],'add-category', '+ Add new category');
+    addButton.setAttribute('type', 'submit');
     const cancelButton = createCancelButton(form);
     
     let buttonGroup = createElementWithClasses('div', ['btn__group']);
@@ -72,9 +74,10 @@ function createProductForm(categoryList) {
     const nameInput = createElementWithAttributes('input', 
         [
             ['name', 'product-name'],
-            ['placeholder', 'Enter product name']
+            ['placeholder', 'Enter product name'],
+            ['class', 'form__input'],
         ]);
-    nameInput.classList.add('form__input');  
+    nameInput.required = true;
     //Crete div for label and input
     let nameGroup = createElementWithClasses('div', ['form__group']);
     appendToContainer(nameGroup, [nameLabel, nameInput]);
@@ -95,9 +98,8 @@ function createProductForm(categoryList) {
                 ['id', UNITS[unit]],
                 ['value', UNITS[unit]],
                 ['name', 'units'],
-                ['min', '0']
+                ['class', 'form__radio-input']
             ]);
-        radio.classList.add('form__radio-input');
 
         const radioLabel = creatLabel(['form__radio-label'], UNITS[unit], UNITS[unit]);
         const radioSpan = createElementWithClasses('span', ['form__radio-button']);
@@ -105,6 +107,17 @@ function createProductForm(categoryList) {
         radioLabel.appendChild(radioSpan);
         appendToContainer(radioGroup , [radio, radioLabel]);
         radioContainer.appendChild(radioGroup);
+        radio.addEventListener('change', () => {
+            if (radio.value === UNITS.weight && radio.checked) {
+                quantityInput.setAttribute('step', '0.1');
+                quantityInput.setAttribute('min', '0.1');
+            } else {
+                if (quantityInput.hasAttribute('step')) {
+                    quantityInput.removeAttribute('step');
+                    quantityInput.setAttribute('min', '1');
+                }
+            }
+        });
     }
 
     const quantityLabel =  creatLabel(['form__label'], 'product-quantity','Product quantity');
@@ -112,14 +125,17 @@ function createProductForm(categoryList) {
         [
             ['name', 'product-quantity'],
             ['type', 'number'],
-            ['placeholder', '0']
+            ['placeholder', '0'],
+            ['class', 'form__input'],
+            ['min', '1']
         ]);
-    quantityInput.classList.add('form__input');  
+    quantityInput.required = true;
     //Crete div for label and input
     let quantityGroup = createElementWithClasses('div', ['form__group']);
     appendToContainer(quantityGroup, [quantityLabel, quantityInput]);
 
     const addButton = createButton(['btn', 'btn__add'],'add-category', '+ Add new product');
+    addButton.setAttribute('type', 'submit');
     const cancelButton = createCancelButton(form);
     
     let buttonGroup = createElementWithClasses('div', ['btn__group']);
