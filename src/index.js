@@ -1,9 +1,9 @@
 import {ShoppingList} from './components/logic';
 import {renderList} from './components/render';
 import {createNewCategory, creteNewProduct} from './components/forms-add-new';
+import {PRODUCTCATEGORIES} from './components/constants';
 
-//import {PRODUCTCATEGORIES} from './components/constants.js';
-const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
+//const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
 
 const myShoppingList = new ShoppingList(PRODUCTCATEGORIES);
 

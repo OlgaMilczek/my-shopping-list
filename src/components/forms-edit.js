@@ -4,16 +4,16 @@ import {appendToContainer} from './DOMmanipulator.js';
 
 function editCategoryForm(shoppingList, editedCategory) {
     const categoryForm = creatCategoryForm();
-    let categoryName = categoryForm.nameInput.value;
-    categoryName = editedCategory;
-    
+    //Change input value for old existing name
+    categoryForm.nameInput.value = editedCategory.name;
+    categoryForm.addButton.textContent = 'Edit category';
     categoryForm.addButton.addEventListener('click', () => {
         const newCategoryName = categoryForm.nameInput.value;
-        if (categoryName === '') {
+        if (newCategoryName === '') {
             alert('Enter a category name');
         }
         else {
-            shoppingList.editCategory(editedCategory, newCategoryName);
+            editedCategory.changeName(newCategoryName);
             renderList(shoppingList);
             cancelForm(categoryForm.form);
         }

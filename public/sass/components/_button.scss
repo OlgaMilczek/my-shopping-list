@@ -6,6 +6,8 @@
     padding: 1rem;
     transition: all .2s;
     font-family: inherit;
+    border: none;
+    padding: 1.2rem;
 
     &__boardless {
         background: none;
@@ -22,11 +24,18 @@
         }
     }
 
+    &__edit {
+        color: $text-color-primary;
+
+        &:hover { 
+            color: $text-color-secondary;
+        }
+    }
+
     &__add {
         color: $color-white;
         background-color: $color-primary;
         border-radius: 100rem;
-        border: none;
 
         &:hover {
             background-color: $color-primary-dark;
@@ -35,18 +44,27 @@
         }
 
         &:active {
-            border: none;
             background-color: $color-primary-dark;
             box-shadow: 0 0.5rem 1rem rgba($color-black, .1);
             transform: translateY(1px);
         }
     }
 
-    &__edit {
+    &__cancel {
         color: $text-color-primary;
+        background-color: $color-gray-light-2;
+        border-radius: 100rem;
 
-        &:hover { 
-            color: $text-color-secondary;
+        &:hover {
+            background-color: $color-gray-light-3;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            transform: translateY(2px);
+        }
+
+        &:active {
+            background-color: $color-gray-light-3;
+            box-shadow: 0 0.5rem 1rem rgba($color-black, .1);
+            transform: translateY(1px);
         }
     }
 

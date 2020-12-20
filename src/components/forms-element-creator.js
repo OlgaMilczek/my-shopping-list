@@ -31,7 +31,7 @@ function createCategoryInput(categories){
 }
 
 function createCancelButton(form) {
-    const cancelButton = createButton(['btn btn__cancel'],'cancel', 'Cancel');
+    const cancelButton = createButton(['btn', 'btn__cancel'],'cancel', 'Cancel');
     cancelButton.addEventListener('click', ()=> {
         cancelForm(form);
     });
@@ -49,11 +49,12 @@ function creatCategoryForm() {
             ['name', 'category-name'],
             ['placeholder', 'Enter category name']
         ]);
+    nameInput.classList.add('form__input');  
     //Creete div for label and input
     let nameGroup = createElementWithClasses('div', ['form__group']);
     nameGroup = appendToContainer(nameGroup, [nameLabel, nameInput]);
 
-    const addButton = createButton(['btn btn__add'],'add-category', '+ Add new category');
+    const addButton = createButton(['btn', 'btn__add'],'add-category', '+ Add new category');
     const cancelButton = createCancelButton(form);
     
     let buttonGroup = createElementWithClasses('div', ['btn__group']);

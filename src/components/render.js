@@ -6,11 +6,11 @@ function renderList(shoppingList) {
     const shoppingListContainer = document.querySelector('.shopping-list');
     shoppingListContainer.innerHTML = '';
 
-    for (let category in shoppingList.productsDict) {
+    for (let category of shoppingList.categoryList) {
         let categoryListContainer = createElementWithClasses('div', ['shopping-list__category']);
         let categoryHeadingContainer = createElementWithClasses('div', ['shopping-list__category-name']);
         const categoryName = document.createElement('h4');
-        categoryName.textContent = category;
+        categoryName.textContent = category.name;
         const [btnGroup, editBtn, dellButton] = creteIconButtonGroup();
 
         //Add event listers for buttons
@@ -19,12 +19,13 @@ function renderList(shoppingList) {
         });
         dellButton.addEventListener('click', () => {
             shoppingList.deleteCategory(category);
+            renderList(shoppingList);
         });
         
-        categoryHeadingContainer = appendToContainer(categoryHeadingContainer, [categoryName, btnGroup]);
+        appendToContainer(categoryHeadingContainer, [categoryName, btnGroup]);
         categoryListContainer.appendChild(categoryHeadingContainer);
 
-        shoppingList.productsDict[category].forEach(product => {
+        category.productList.forEach(product => {
             let elementContainer = createElementWithClasses('div', ['shopping-list__element']);
             let leftContainer = createElementWithClasses('div', ['u-flex-left']);
             let rightContainer = createElementWithClasses('div', ['u-flex-right', 'shopping-list__element-details']);
@@ -36,7 +37,11 @@ function renderList(shoppingList) {
 
                 ]);
             checkbox.classList.add('shopping-list__checkbox-input');
-            let label = creatLabel(['shopping-list__checkbox-label'], product.nam, product.name);
+            checkbox.checked = !product.bought;
+            checkbox.addEventListener('change', () => {
+                product.editBought();
+            });
+            let label = creatLabel(['shopping-list__checkbox-label'], product.name, product.name);
             let inputSpan = createElementWithClasses('span', ['shopping-list__checkbox-mark']);
             let spanIcon = createElementWithClasses('i', ['fas fa-check']);
             inputSpan.appendChild(spanIcon);
@@ -51,21 +56,30 @@ function renderList(shoppingList) {
             });
             dellButton.addEventListener('click', () => {
                 shoppingList.deleteProduct(product, category);
+                renderList(shoppingList);
             });
 
             //Adding elements to left side
-            leftContainer = appendToContainer(leftContainer, [checkbox, label, inputSpan]);
+            appendToContainer(leftContainer, [checkbox, label, inputSpan]);
             
             //Adding elements to right side
-            rightContainer = appendToContainer(rightContainer, [quantity, btnGroup]);
+            appendToContainer(rightContainer, [quantity, btnGroup]);
             
             //Adding to element container
-            elementContainer = appendToContainer(elementContainer, [leftContainer, rightContainer]);
+            appendToContainer(elementContainer, [leftContainer, rightContainer]);
             categoryListContainer.appendChild(elementContainer);
         });
         //Adding to general container 
         shoppingListContainer.appendChild(categoryListContainer);
     }
+    let totalContainer = createElementWithClasses('div', ['shopping-list__total']);
+    let totalText = document.createElement('span');
+    let totalValue = document.createElement('span');
+    totalText.textContent = 'Total';
+    totalValue.textContent = shoppingList.total;
+
+    appendToContainer(totalContainer, [totalText, totalValue]);
+    shoppingListContainer.appendChild(totalContainer);
 }
 
 export {renderList};

@@ -1,10 +1,11 @@
-import {UNITS} from './ constants';
+import {UNITS} from './constants';
 
 class Product {
     constructor(name, quantity, units) {
         this.name = name;
         this.quantity = quantity;
         this.units = units;
+        this.bought = false;
     }
 
     editQuantity(newQuantity) {
@@ -14,41 +15,62 @@ class Product {
     editName(newName) {
         this.name = newName;
     }
+
+    editBought() {
+        this.bought = !this.bought;
+    }
+}
+
+class Category {
+    constructor(name) {
+        this.name = name; 
+        this.productList = [];
+    }
+
+    changeName(newName) {
+        this.name = newName;
+    }
+
+    addProduct(product) {
+        this.productList.push(product);
+    }
+
+    deleteProduct(removedProduct) {
+        const newProductList = this.productList.filter((product) => product !== removedProduct);
+        this.productList = newProductList;
+    }
 }
 
 class ShoppingList {
     constructor(categories) {
         //categories should be ready list of product categories.
-        this.productsDict = {};
+        this.categoryList = [];
         this.total = 0;
-        categories.forEach(category => {
-            this.productsDict[category] = [];
+        categories.forEach(categoryName => {
+            const newCategory = new Category(categoryName);
+            this.categoryList.push(newCategory);
         });
     }
 
     addProduct(name, quantity, units, category) {
         const newProduct = new Product(name, quantity, units);
-        this.productsDict[category].push(newProduct);
+        category.addProduct(newProduct);
         this.sumTotal();
     }
 
     deleteProduct(removedProduct, category) {
-        const newProductList = this.productsDict[category].filter(product => product !== removedProduct);
-        this.productsDict[category] = newProductList;
+        category.deleteProduct(removedProduct);
         this.sumTotal();
     }
 
-    addCategory(newCategory) {
-        this.productsDict[newCategory] = [];
+    addCategory(categoryName) {
+        const newCategory = new Category(categoryName);
+        this.categoryList.push(newCategory);
     }
 
-    editCategory(oldCategoryName, newCategoryName) {
-        this.productsDict[newCategoryName] = this.productsDict[oldCategoryName];
-        delete this.productsDict[oldCategoryName];
-    }
-
-    deleteCategory(category) {
-        delete this.productsDict[category];
+    deleteCategory(removedCategory) {
+        const newCategoryList = this.categoryList.filter(category => category !== removedCategory);
+        this.categoryList = newCategoryList;
         this.sumTotal();
     }
 
@@ -56,8 +78,8 @@ class ShoppingList {
         /* because shopping list isn't be very big (more than 10^6)
         it shouldn't be a problem to count total after each operation. */
         let newTotal = 0;
-        for (let category in this.productsDict) {
-            newTotal += this.productsDict[category].reduce((total, product) => {
+        for (let category of this.categoryList) {
+            newTotal += category.productList.reduce((total, product) => {
                 if (product.units === UNITS.weight) {
                     //if product units are weight then is treated as one pice of product
                     return total + 1;
