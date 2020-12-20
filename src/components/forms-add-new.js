@@ -1,18 +1,23 @@
+import {Product} from './logic';
+
 import {renderList} from './render.js';
 import {cancelForm, creatCategoryForm, createProductForm} from './forms-element-creator.js';
 import {appendToContainer} from './DOMmanipulator.js';
-import {UNITS} from './constants';
 
+import {categoryFormValidation, productFormValidation} from './formValidation';
 
 function createNewCategoryForm(shoppingList) {
     const categoryForm = creatCategoryForm();
     function onSubmit(e) {
         e.preventDefault();
-        const categoryName = categoryForm.nameInput.value;
-        shoppingList.addCategory(categoryName);
-        renderList(shoppingList);
-        cancelForm(categoryForm.form);
-        categoryForm.form.removeEventListener('submit', onSubmit);
+        const formValid = categoryFormValidation(categoryForm.nameInput);
+        if (formValid) {
+            const categoryName = categoryForm.nameInput.value;
+            shoppingList.addCategory(categoryName);
+            renderList(shoppingList);
+            cancelForm(categoryForm.form);
+            categoryForm.form.removeEventListener('submit', onSubmit);
+        }
     }
     categoryForm.form.addEventListener('submit', onSubmit);
     appendToContainer(categoryForm.form, [categoryForm.nameGroup, categoryForm.buttonGroup]);
@@ -20,32 +25,26 @@ function createNewCategoryForm(shoppingList) {
 
 function creteNewProductForm(shoppingList) {
     const productForm = createProductForm(shoppingList.categoryList);
-    const radios = productForm.radioContainer.querySelectorAll('input[name="units"]');
-    let units = null;
-
-    radios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            if (radio.value === UNITS.weight && radio.checked) {
-                units = radio.value;
-            } else {
-                units = radio.value;
-            }
-        });
-    }); 
 
     function onSubmit(e) {
         e.preventDefault();
-        const productName = productForm.nameInput.value;
-        const productQuantity = productForm.quantityInput.value;
-        const categoryName = productForm.categorySelector.value;
+        const units = productForm.radioContainer.querySelector('input[name="units"]:checked').value;
+        const formValid = productFormValidation(productForm.nameInput, productForm.quantityInput, productForm.categorySelector, units);
+        if (formValid) {
+            const productName = productForm.nameInput.value;
+            const productQuantity = productForm.quantityInput.value;
+            const [categoryName, categoryIdString] = productForm.categorySelector.value.split('-');
+            const categoryId = Number(categoryIdString);
 
-        const category = shoppingList.categoryList.filter(category => category.name === categoryName)[0];
-        const quantityNumber = parseFloat(productQuantity);
-        shoppingList.addProduct(productName, quantityNumber, units, category);
-
-        renderList(shoppingList);
-        cancelForm(productForm.form);
-        productForm.form.removeEventListener('submit', onSubmit);
+            const category = shoppingList.categoryList.filter((category, id) => (category.name === categoryName && id === categoryId))[0];
+    
+            const newProduct = new Product(productName, productQuantity, units);
+            shoppingList.addProductToCategory(newProduct, category);
+    
+            renderList(shoppingList);
+            cancelForm(productForm.form);
+            productForm.form.removeEventListener('submit', onSubmit);
+        }
     }
     productForm.form.addEventListener('submit', onSubmit);
 

@@ -2,7 +2,7 @@ const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'arty
 
 const UNITS = {
     weight: 'kg',
-    pcs: 'pcs.'
+    pcs: 'pcs'
 };
 
 const NAME = 'myShopping';

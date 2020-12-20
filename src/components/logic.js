@@ -3,21 +3,27 @@ import {UNITS} from './constants';
 class Product {
     constructor(name, quantity, units) {
         this.name = name;
-        this.quantity = quantity;
+        this.quantity = Number(quantity);
         this.units = units;
         this.bought = false;
     }
 
     editQuantity(newQuantity) {
-        this.quantity = newQuantity;
+        if (newQuantity !== this.quantity) {
+            this.quantity = Number(newQuantity);
+        }
     }
 
     editName(newName) {
-        this.name = newName;
+        if (newName !== this.name) {
+            this.name = newName;
+        }
     }
 
     editUnits(newUnits) {
-        this.units = newUnits;
+        if(newUnits !== this.units) {
+            this.units = newUnits;
+        }
     }
 
     editBought() {
@@ -50,19 +56,20 @@ class ShoppingList {
         //categories should be ready list of product categories.
         this.categoryList = [];
         this.total = 0;
+        this.totalPCS = 0;
+        this.totalWeight = 0;
         categories.forEach(categoryName => {
             const newCategory = new Category(categoryName);
             this.categoryList.push(newCategory);
         });
     }
 
-    addProduct(name, quantity, units, category) {
-        const newProduct = new Product(name, quantity, units);
-        category.addProduct(newProduct);
+    addProductToCategory(product, category) {
+        category.addProduct(product);
         this.sumTotal();
     }
 
-    deleteProduct(removedProduct, category) {
+    deleteProductFromCategory(removedProduct, category) {
         category.deleteProduct(removedProduct);
         this.sumTotal();
     }
@@ -78,22 +85,33 @@ class ShoppingList {
         this.sumTotal();
     }
 
+    changeProductCategory(product, oldCategory, newCategory) {
+        this.deleteProductFromCategory(product, oldCategory);
+        this.addProductToCategory(product, newCategory);
+    }
+
     sumTotal() {
         /* because shopping list isn't be very big (more than 10^6)
         it shouldn't be a problem to count total after each operation. */
         let newTotal = 0;
+        let newTotalPcs = 0;
+        let newTotalWeight = 0;
         for (let category of this.categoryList) {
-            newTotal += category.productList.reduce((total, product) => {
+            for (let product of category.productList) {
                 if (product.units === UNITS.weight) {
                     //if product units are weight then is treated as one pice of product
-                    return total + 1;
+                    newTotal += 1;
+                    newTotalWeight += product.quantity;
                 }
                 else {
-                    return total + product.quantity;
+                    newTotal += product.quantity;
+                    newTotalPcs += product.quantity;
                 }
-            }, 0);
+            }
         }
         this.total = newTotal;
+        this.totalPCS = newTotalPcs;
+        this.totalWeight = newTotalWeight;
     }
 }
 

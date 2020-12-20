@@ -1,9 +1,7 @@
 .shopping-list {
     margin: auto;
-    width: $default-width;
+    width: 100%;
     padding: 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 2rem rgba($color-black, .1);
 
     &__category {
         &:not(:first-child) {
@@ -58,18 +56,6 @@
         & > span {
             background-color: $color-primary;
             color: $color-white;
-        }
-    }
-
-    &__total {
-        padding-top: 2rem;
-
-        & > p {
-            padding-right: 5rem;
-            font-size: 2rem;
-            font-weight: 500;
-            text-align: right;
-            width: 100%;
         }
     }
 }

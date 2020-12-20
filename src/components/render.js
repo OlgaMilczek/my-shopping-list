@@ -9,7 +9,8 @@ function renderList(shoppingList) {
     const shoppingListContainer = document.querySelector('.shopping-list');
     shoppingListContainer.innerHTML = '';
 
-    for (let category of shoppingList.categoryList) {
+    for (let categoryId in shoppingList.categoryList) {
+        let category = shoppingList.categoryList[categoryId];
         let categoryListContainer = createElementWithClasses('div', ['shopping-list__category']);
         let categoryHeadingContainer = createElementWithClasses('div', ['shopping-list__category-name']);
         const categoryName = document.createElement('h4');
@@ -28,25 +29,25 @@ function renderList(shoppingList) {
         appendToContainer(categoryHeadingContainer, [categoryName, btnGroup]);
         categoryListContainer.appendChild(categoryHeadingContainer);
 
-        category.productList.forEach(product => {
+        category.productList.forEach((product, productId) => {
             let elementContainer = createElementWithClasses('div', ['shopping-list__element']);
             let leftContainer = createElementWithClasses('div', ['u-flex-left']);
             let rightContainer = createElementWithClasses('div', ['u-flex-right', 'shopping-list__element-details']);
             //Left side elements
+            let itemId = `category-${categoryId}_product-${productId}`;
             let checkbox = createElementWithAttributes('input', 
                 [
                     ['type', 'checkbox'],
-                    ['id', product.name],
+                    ['id', itemId],
 
                 ]);
             checkbox.classList.add('shopping-list__checkbox-input');
             checkbox.checked = product.bought;
             checkbox.addEventListener('change', () => {
                 product.editBought();
-                console.log('bought');
                 setStorage(NAME, shoppingList);
             });
-            let label = creatLabel(['shopping-list__checkbox-label'], product.name, product.name);
+            let label = creatLabel(['shopping-list__checkbox-label'], itemId , product.name);
             let inputSpan = createElementWithClasses('span', ['shopping-list__checkbox-mark']);
             let spanIcon = createElementWithClasses('i', ['fas', 'fa-check']);
             inputSpan.appendChild(spanIcon);
@@ -58,7 +59,7 @@ function renderList(shoppingList) {
             const [btnGroup, editBtn, dellButton] = creteIconButtonGroup();
             //Add event listers for buttons
             editBtn.addEventListener('click', () => {
-                editProductForm(shoppingList, category, product);
+                editProductForm(shoppingList, category, categoryId, product);
             });
             dellButton.addEventListener('click', () => {
                 shoppingList.deleteProduct(product, category);
@@ -78,12 +79,14 @@ function renderList(shoppingList) {
         //Adding to general container 
         shoppingListContainer.appendChild(categoryListContainer);
     }
-    let totalContainer = createElementWithClasses('div', ['shopping-list__total']);
-    let total = document.createElement('p');
-    total.textContent = `Total: ${shoppingList.total}`;
 
-    totalContainer.appendChild(total);
-    shoppingListContainer.appendChild(totalContainer);
+    const total = document.getElementById('total');
+    total.textContent = shoppingList.total;
+    const totalWeight = document.getElementById('total-weight');
+    totalWeight.textContent = `${shoppingList.totalWeight} kg`;
+    const totalPcs = document.getElementById('total-pieces');
+    totalPcs.textContent = `${shoppingList.totalPCS} pcs.`;
+
     setStorage(NAME, shoppingList);
 }
 

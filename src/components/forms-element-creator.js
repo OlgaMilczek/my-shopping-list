@@ -22,9 +22,20 @@ function activeForm() {
 function createCategoryInput(categories) {
     const categorySelector = createElementWithAttributes('select', [['name', 'category']]);
     categorySelector.classList.add('form__select');
+    categorySelector.required = true;
+    //<option value="" disabled selected hidden>Please Choose...</option>
+    let placeholderOption = document.createElement('option');
+    placeholderOption.value = '';
+    placeholderOption.disabled = true;
+    placeholderOption.selected = true;
+    placeholderOption.textContent = 'Choose category';
 
-    for (let category of categories) {
+    categorySelector.appendChild(placeholderOption);
+
+    for (let categoryId in categories) {
+        const category = categories[categoryId];
         let categoryOption = document.createElement('option');
+        categoryOption.value = `${category.name}-${categoryId}`;
         categoryOption.textContent = category.name;
         categorySelector.appendChild(categoryOption);
     }
@@ -100,7 +111,7 @@ function createProductForm(categoryList) {
                 ['name', 'units'],
                 ['class', 'form__radio-input']
             ]);
-
+        radio.required = true;
         const radioLabel = creatLabel(['form__radio-label'], UNITS[unit], UNITS[unit]);
         const radioSpan = createElementWithClasses('span', ['form__radio-button']);
 
