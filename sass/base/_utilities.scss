@@ -1,0 +1,21 @@
+.u-center-text { 
+    text-align: center !important;
+}
+
+.u-margin-top-big {
+    margin-top: 4rem !important;
+
+    @include respond(tab-port) {
+        margin-top: 3rem !important;
+    } 
+}
+
+.u-flex-left {
+    display: flex;
+    justify-content: left;
+}
+
+.u-flex-right {
+    display: flex;
+    justify-content: right;
+}
