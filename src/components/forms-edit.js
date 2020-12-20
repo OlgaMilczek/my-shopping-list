@@ -5,7 +5,7 @@ import {appendToContainer} from './DOMmanipulator.js';
 function editCategoryForm(shoppingList, editedCategory) {
     const categoryForm = creatCategoryForm();
     //Change input value for old existing name
-    categoryForm.nameInput.value = editedCategory.name;
+    categoryForm.nameInput.value = editedCategory;
     categoryForm.addButton.textContent = 'Edit category';
     categoryForm.addButton.addEventListener('click', () => {
         const newCategoryName = categoryForm.nameInput.value;

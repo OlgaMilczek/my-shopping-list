@@ -70,7 +70,7 @@ body {
 
 .shopping-list {
   margin: auto;
-  width: 40%;
+  width: 50rem;
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
@@ -110,6 +110,14 @@ body {
     .shopping-list__checkbox-input:checked ~ .shopping-list__checkbox-label > span {
       background-color: #55c57a;
       color: #fff; }
+  .shopping-list__total {
+    padding-top: 2rem; }
+    .shopping-list__total > p {
+      padding-right: 5rem;
+      font-size: 2rem;
+      font-weight: 500;
+      text-align: right;
+      width: 100%; }
 
 .btn {
   font-size: 1.6rem;
@@ -163,7 +171,7 @@ body {
 
 .adding-buttons {
   margin: auto;
-  width: 40%;
+  width: 50rem;
   display: flex;
   justify-content: space-around; }
 

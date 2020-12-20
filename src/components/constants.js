@@ -1,7 +1,7 @@
 const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
 
 const UNITS = {
-    weight: 'weight',
+    weight: 'kg',
     pcs: 'pcs.'
 };
 

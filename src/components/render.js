@@ -33,22 +33,23 @@ function renderList(shoppingList) {
             let checkbox = createElementWithAttributes('input', 
                 [
                     ['type', 'checkbox'],
-                    ['id', product],
+                    ['id', product.name],
 
                 ]);
             checkbox.classList.add('shopping-list__checkbox-input');
-            checkbox.checked = !product.bought;
+            checkbox.checked = product.bought;
             checkbox.addEventListener('change', () => {
                 product.editBought();
             });
             let label = creatLabel(['shopping-list__checkbox-label'], product.name, product.name);
             let inputSpan = createElementWithClasses('span', ['shopping-list__checkbox-mark']);
-            let spanIcon = createElementWithClasses('i', ['fas fa-check']);
+            let spanIcon = createElementWithClasses('i', ['fas', 'fa-check']);
             inputSpan.appendChild(spanIcon);
+            label.appendChild(inputSpan);
             
             //Right side elements
             let quantity = document.createElement('span');
-            quantity.textContent = product.quantity;
+            quantity.textContent = `${product.quantity}  ${product.units}`;
             const [btnGroup, editBtn, dellButton] = creteIconButtonGroup();
             //Add event listers for buttons
             editBtn.addEventListener('click', () => {
@@ -60,7 +61,7 @@ function renderList(shoppingList) {
             });
 
             //Adding elements to left side
-            appendToContainer(leftContainer, [checkbox, label, inputSpan]);
+            appendToContainer(leftContainer, [checkbox, label]);
             
             //Adding elements to right side
             appendToContainer(rightContainer, [quantity, btnGroup]);
@@ -73,12 +74,10 @@ function renderList(shoppingList) {
         shoppingListContainer.appendChild(categoryListContainer);
     }
     let totalContainer = createElementWithClasses('div', ['shopping-list__total']);
-    let totalText = document.createElement('span');
-    let totalValue = document.createElement('span');
-    totalText.textContent = 'Total';
-    totalValue.textContent = shoppingList.total;
+    let total = document.createElement('p');
+    total.textContent = `Total: ${shoppingList.total}`;
 
-    appendToContainer(totalContainer, [totalText, totalValue]);
+    totalContainer.appendChild(total);
     shoppingListContainer.appendChild(totalContainer);
 }
 

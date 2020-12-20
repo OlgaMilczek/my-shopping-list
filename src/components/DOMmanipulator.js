@@ -53,7 +53,7 @@ function creteIconButtonGroup() {
     let editBtn = createIconButton(['btn', 'btn__boardless', 'btn__edit'], ['far', 'fa-edit']);
     let dellButton = createIconButton(['btn', 'btn__boardless', 'btn__delete'], ['far', 'fa-trash-alt']);
 
-    btnGroup = appendToContainer(btnGroup, [editBtn, dellButton]);
+    appendToContainer(btnGroup, [editBtn, dellButton]);
     return [btnGroup, editBtn, dellButton];
 }
 
