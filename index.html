@@ -18,13 +18,30 @@
         <header class='header'>
             <h1 class="heading-primary">My shopping list</h1>
         </header>
-        <main>
-            <div class='adding-buttons u-margin-top-big'>
-                <button id='adding-buttons-product' class="btn btn__add">+ Add new product</button>
-                <button id='adding-buttons-category' class='btn btn__add'>+ Add new category</button>
+        <div class='adding-buttons u-margin-top-big'>
+            <button id='adding-buttons-product' class="btn btn__add">+ Add new product</button>
+            <button id='adding-buttons-category' class='btn btn__add'>+ Add new category</button>
+        </div>
+        <div class='main-content u-margin-top-big'>
+            <div class="shopping-list"></div>
+            <div class ='total-container'>
+                <table>
+                        <thead>
+                            <tr>
+                                <th class='u-text-align-right'>Total elements:</th><th class='u-text-align-left' id='total'>0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class='u-text-align-right'>Total weight:</td> <td class='u-text-align-left' id='total-weight'>0</td>
+                            </tr>
+                            <tr>
+                            <td class='u-text-align-right'>Total pieces:</td> <td class='u-text-align-left' id='total-pieces'>0</td> 
+                            </tr>
+                        </tbody>
+                </table>
             </div>
-            <div class="shopping-list u-margin-top-big"></div>
-        </main>
+        </div>
         <form id='form' class="form inactive">
         </form>
         <div id="overlay" class="overlay"></div>
