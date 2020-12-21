@@ -1,10 +1,18 @@
-const PRODUCTCATEGORIES = ['warzywa', 'owoce', 'nabiał', 'mięso i ryby', 'artykuły higieniczne', 'pieczywo', 'produkty suche'];
+const PRODUCTCATEGORIES = [
+  "warzywa",
+  "owoce",
+  "nabiał",
+  "mięso i ryby",
+  "artykuły higieniczne",
+  "pieczywo",
+  "produkty suche",
+];
 
 const UNITS = {
-    weight: 'kg',
-    pcs: 'pcs'
+  weight: "kg",
+  pcs: "pcs",
 };
 
-const NAME = 'myShopping';
+const NAME = "myShopping";
 
-export {PRODUCTCATEGORIES, UNITS, NAME};
+export { PRODUCTCATEGORIES, UNITS, NAME };

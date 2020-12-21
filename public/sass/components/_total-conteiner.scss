@@ -1,18 +1,18 @@
 .total-container {
-    margin: auto;
-    width: 100%;
-    padding-right: 6rem;
-    font-size: 1.6rem;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
+  margin: auto;
+  width: 100%;
+  padding-right: 6rem;
+  font-size: 1.6rem;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 
-    & th {
-        padding: .3rem;
-    } 
+  & th {
+    padding: 0.3rem;
+  }
 
-    & td {
-        padding: .3rem;
-        font-size: 1.4rem;
-    }
+  & td {
+    padding: 0.3rem;
+    font-size: 1.4rem;
+  }
 }

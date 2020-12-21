@@ -1,76 +1,76 @@
 .btn {
-    font-size: $default-font-size;
-    cursor: pointer;
-    height: auto;
-    line-height: 1;
-    padding: 1rem;
-    transition: all .2s;
-    font-family: inherit;
-    border: none;
-    padding: 1.2rem;
+  font-size: $default-font-size;
+  cursor: pointer;
+  height: auto;
+  line-height: 1;
+  padding: 1rem;
+  transition: all 0.2s;
+  font-family: inherit;
+  border: none;
+  padding: 1.2rem;
 
-    &__boardless {
-        background: none;
-        border: 0px;
-        margin: 0;
-        padding: 0;
+  &__boardless {
+    background: none;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__delete {
+    color: $color-delete-primary;
+
+    &:hover {
+      color: $color-delete-secondary;
+    }
+  }
+
+  &__edit {
+    color: $text-color-primary;
+
+    &:hover {
+      color: $text-color-secondary;
+    }
+  }
+
+  &__add {
+    color: $color-white;
+    background-color: $color-primary;
+    border-radius: 100rem;
+
+    &:hover {
+      background-color: $color-primary-dark;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+      transform: translateY(2px);
     }
 
-    &__delete {
-        color: $color-delete-primary;
+    &:active {
+      background-color: $color-primary-dark;
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.1);
+      transform: translateY(1px);
+    }
+  }
 
-        &:hover { 
-            color: $color-delete-secondary;
-        }
+  &__cancel {
+    color: $text-color-primary;
+    background-color: $color-gray-light-2;
+    border-radius: 100rem;
+
+    &:hover {
+      background-color: $color-gray-light-3;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+      transform: translateY(2px);
     }
 
-    &__edit {
-        color: $text-color-primary;
-
-        &:hover { 
-            color: $text-color-secondary;
-        }
+    &:active {
+      background-color: $color-gray-light-3;
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.1);
+      transform: translateY(1px);
     }
+  }
 
-    &__add {
-        color: $color-white;
-        background-color: $color-primary;
-        border-radius: 100rem;
-
-        &:hover {
-            background-color: $color-primary-dark;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
-            transform: translateY(2px);
-        }
-
-        &:active {
-            background-color: $color-primary-dark;
-            box-shadow: 0 0.5rem 1rem rgba($color-black, .1);
-            transform: translateY(1px);
-        }
+  &__group {
+    & > * {
+      margin-left: 1rem;
     }
-
-    &__cancel {
-        color: $text-color-primary;
-        background-color: $color-gray-light-2;
-        border-radius: 100rem;
-
-        &:hover {
-            background-color: $color-gray-light-3;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
-            transform: translateY(2px);
-        }
-
-        &:active {
-            background-color: $color-gray-light-3;
-            box-shadow: 0 0.5rem 1rem rgba($color-black, .1);
-            transform: translateY(1px);
-        }
-    }
-
-    &__group {
-        & > * {
-            margin-left: 1rem;
-        }
-    }
+  }
 }

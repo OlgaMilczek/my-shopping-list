@@ -1,10 +1,17 @@
-import {Product} from './logic';
+import { Product } from './logic';
 
-import {renderList} from './render.js';
-import {cancelForm, creatCategoryForm, createProductForm} from './forms-element-creator.js';
-import {appendToContainer} from './DOMmanipulator.js';
+import { renderList } from './render.js';
+import {
+    cancelForm,
+    creatCategoryForm,
+    createProductForm,
+} from './forms-element-creator.js';
+import { appendToContainer } from './DOMmanipulator.js';
 
-import {categoryFormValidation, productFormValidation} from './formValidation';
+import {
+    categoryFormValidation,
+    productFormValidation,
+} from './formValidation';
 
 function createNewCategoryForm(shoppingList) {
     const categoryForm = creatCategoryForm();
@@ -20,7 +27,10 @@ function createNewCategoryForm(shoppingList) {
         }
     }
     categoryForm.form.addEventListener('submit', onSubmit);
-    appendToContainer(categoryForm.form, [categoryForm.nameGroup, categoryForm.buttonGroup]);
+    appendToContainer(categoryForm.form, [
+        categoryForm.nameGroup,
+        categoryForm.buttonGroup,
+    ]);
 }
 
 function creteNewProductForm(shoppingList) {
@@ -28,19 +38,31 @@ function creteNewProductForm(shoppingList) {
 
     function onSubmit(e) {
         e.preventDefault();
-        const units = productForm.radioContainer.querySelector('input[name="units"]:checked').value;
-        const formValid = productFormValidation(productForm.nameInput, productForm.quantityInput, productForm.categorySelector, units);
+        const units = productForm.radioContainer.querySelector(
+            'input[name="units"]:checked'
+        ).value;
+        const formValid = productFormValidation(
+            productForm.nameInput,
+            productForm.quantityInput,
+            productForm.categorySelector,
+            units
+        );
         if (formValid) {
             const productName = productForm.nameInput.value;
             const productQuantity = productForm.quantityInput.value;
-            const [categoryName, categoryIdString] = productForm.categorySelector.value.split('-');
+            const [
+                categoryName,
+                categoryIdString,
+            ] = productForm.categorySelector.value.split('-');
             const categoryId = Number(categoryIdString);
 
-            const category = shoppingList.categoryList.filter((category, id) => (category.name === categoryName && id === categoryId))[0];
-    
+            const category = shoppingList.categoryList.filter(
+                (category, id) => category.name === categoryName && id === categoryId
+            )[0];
+
             const newProduct = new Product(productName, productQuantity, units);
             shoppingList.addProductToCategory(newProduct, category);
-    
+
             renderList(shoppingList);
             cancelForm(productForm.form);
             productForm.form.removeEventListener('submit', onSubmit);
@@ -48,14 +70,13 @@ function creteNewProductForm(shoppingList) {
     }
     productForm.form.addEventListener('submit', onSubmit);
 
-    appendToContainer(productForm.form, 
-        [
-            productForm.nameGroup,
-            productForm.categoryGroup,
-            productForm.radioContainer,
-            productForm.quantityGroup,
-            productForm.buttonGroup,
-        ]);
+    appendToContainer(productForm.form, [
+        productForm.nameGroup,
+        productForm.categoryGroup,
+        productForm.radioContainer,
+        productForm.quantityGroup,
+        productForm.buttonGroup,
+    ]);
 }
 
-export {createNewCategoryForm , creteNewProductForm}; 
+export { createNewCategoryForm, creteNewProductForm };
