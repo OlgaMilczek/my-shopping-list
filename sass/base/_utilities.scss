@@ -1,29 +1,29 @@
-.u-center-text { 
-    text-align: center !important;
+.u-center-text {
+  text-align: center !important;
 }
 
 .u-text-align-left {
-    text-align: left !important;
+  text-align: left !important;
 }
 
 .u-text-align-right {
-    text-align: right !important;
+  text-align: right !important;
 }
 
 .u-margin-top-big {
-    margin-top: 4rem !important;
+  margin-top: 4rem !important;
 
-    @include respond(tab-port) {
-        margin-top: 3rem !important;
-    } 
+  @include respond(tab-port) {
+    margin-top: 3rem !important;
+  }
 }
 
 .u-flex-left {
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: left;
 }
 
 .u-flex-right {
-    display: flex;
-    justify-content: right;
+  display: flex;
+  justify-content: right;
 }

@@ -1,7 +1,13 @@
 .main-content {
-    margin: auto;
-    width: $default-width;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 2rem rgba($color-black, .2);
-    padding-bottom: 3rem;
+  margin: auto;
+  width: $default-width;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  padding-bottom: 3rem;
+
+  @include respond(phone) {
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+  }
 }

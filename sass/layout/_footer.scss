@@ -1,21 +1,25 @@
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    background-image: linear-gradient(to bottom, rgba($color-gray-dark, .5), rgba($color-gray-dark-2, .5));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background-image: linear-gradient(
+    to bottom,
+    rgba($color-gray-dark, 0.5),
+    rgba($color-gray-dark-2, 0.5)
+  );
 
-    &__text {
-        font-size: 1.2rem;
-        color: $color-white;
-    }
+  &__text {
+    font-size: 1.2rem;
+    color: $color-white;
+  }
 
-    &__link {
-        &,
-        &:link,
-        &:visited  {
-            color: $color-white;
-        }
+  &__link {
+    &,
+    &:link,
+    &:visited {
+      color: $color-white;
     }
+  }
 }
