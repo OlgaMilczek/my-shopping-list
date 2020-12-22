@@ -1,8 +1,8 @@
 # Shopping list app
 
 This project is made as a part of a recruitment task.  
-It was created with Vanilla JS, Wepback and SASS(SCSS).
-live preview: https://olgamilczek.github.io/my-shopping-list/
+It was created with Vanilla JS, Wepback and SASS(SCSS).  
+Live preview: https://olgamilczek.github.io/my-shopping-list/
 
 ## Functionalities
 
