@@ -52,7 +52,6 @@ function creteNewProductForm(shoppingList) {
             const productQuantity = productForm.quantityInput.value;
             const categoryIdString = productForm.categorySelector.value;
             const categoryId = Number(categoryIdString);
-            console.log(categoryId);
             const category = shoppingList.categoryList[categoryId];
             const productUnits = unitsInput.value;
             const newProduct = new Product(productName, productQuantity, productUnits);
