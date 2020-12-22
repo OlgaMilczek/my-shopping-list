@@ -50,15 +50,10 @@ function creteNewProductForm(shoppingList) {
         if (formValid) {
             const productName = productForm.nameInput.value;
             const productQuantity = productForm.quantityInput.value;
-            const [
-                categoryName,
-                categoryIdString,
-            ] = productForm.categorySelector.value.split('-');
+            const categoryIdString = productForm.categorySelector.value;
             const categoryId = Number(categoryIdString);
-
-            const category = shoppingList.categoryList.filter(
-                (category, id) => category.name === categoryName && id === categoryId
-            )[0];
+            console.log(categoryId);
+            const category = shoppingList.categoryList[categoryId];
             const productUnits = unitsInput.value;
             const newProduct = new Product(productName, productQuantity, productUnits);
             shoppingList.addProductToCategory(newProduct, category);

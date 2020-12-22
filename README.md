@@ -18,6 +18,7 @@ It was created with Vanilla JS, Wepback and SASS(SCSS).
   - Count total weight of all elements with units weight.
   - Count total number of all pieces elements with units pieces
 - Saving list to LocalStorage.
+- Drag and drop categories. 
 
 ## Installing dependencies
 

@@ -2,8 +2,13 @@
   margin: auto;
   width: 100%;
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
 
   &__category {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
     &:not(:first-child) {
       padding-top: 2rem;
     }

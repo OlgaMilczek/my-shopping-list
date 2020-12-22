@@ -94,6 +94,17 @@ class ShoppingList {
         this.addProductToCategory(product, newCategory);
     }
 
+    changeCategoryOrder(categoryToChangeId, newID) {
+        const categoryToChange = this.categoryList[categoryToChangeId];
+        this.categoryList.splice(newID, 0, categoryToChange);
+        if (categoryToChangeId > newID) {
+            this.categoryList.splice(categoryToChangeId+1, 1);
+        }
+        else {
+            this.categoryList.splice(categoryToChangeId, 1);
+        }
+    }
+
     sumTotal() {
     /* because shopping list isn't be very big (more than 10^6)
         it shouldn't be a problem to count total after each operation. */

@@ -9,6 +9,7 @@ import {
 
 import { setStorage } from './localStorage';
 import { NAME, UNITS } from './constants';
+import dragAndDropCategories from './dragAndDropCategories';
 
 function renderList(shoppingList) {
     const shoppingListContainer = document.querySelector('.shopping-list');
@@ -19,6 +20,21 @@ function renderList(shoppingList) {
         let categoryListContainer = createElementWithClasses('div', [
             'shopping-list__category',
         ]);
+        //Set data for drag and dorp
+        categoryListContainer.dataset.categoryId = categoryId;
+        categoryListContainer.setAttribute('draggable', 'true');
+        categoryListContainer.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('categoryId', categoryId);
+            setTimeout(() => {
+                categoryListContainer.style.display = 'none';
+            }, 0);
+        });
+
+        categoryListContainer.addEventListener('dragend', (e) => {
+            categoryListContainer.style.display = 'flex';
+            e.dataTransfer.clearData('categoryId');
+        });
+
         let categoryHeadingContainer = createElementWithClasses('div', [
             'shopping-list__category-name',
         ]);
@@ -105,6 +121,9 @@ function renderList(shoppingList) {
     const totalPcs = document.getElementById('total-pieces');
     totalPcs.textContent = `${shoppingList.totalPCS} pcs.`;
 
+    //Drag and drop categories added. 
+    dragAndDropCategories(shoppingList);
+    //Seting storage
     setStorage(NAME, shoppingList);
 }
 
