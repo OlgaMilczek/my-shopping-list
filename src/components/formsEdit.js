@@ -4,7 +4,7 @@ import {
     cancelForm,
     creatCategoryForm,
     createProductForm,
-} from './forms-element-creator.js';
+} from './formsElementCreator.js';
 import { appendToContainer } from './DOMmanipulator.js';
 import { UNITS } from './constants';
 import {
@@ -21,9 +21,7 @@ function editCategoryForm(shoppingList, editedCategory) {
     function onSubmit(e) {
         e.preventDefault();
         const formValid = categoryFormValidation(categoryForm.nameInput);
-        console.log(formValid);
         if (formValid) {
-            console.log(formValid);
             const newCategoryName = categoryForm.nameInput.value;
             editedCategory.changeName(newCategoryName);
             renderList(shoppingList);
@@ -67,7 +65,6 @@ function editProductForm(shoppingList, category, categoryId, product) {
             productForm.categorySelector,
             units
         );
-        console.log(formValid);
         if (formValid) {
             const productName = productForm.nameInput.value;
             const productQuantity = productForm.quantityInput.value;

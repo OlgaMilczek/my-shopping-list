@@ -5,7 +5,7 @@ import {
     cancelForm,
     creatCategoryForm,
     createProductForm,
-} from './forms-element-creator.js';
+} from './formsElementCreator.js';
 import { appendToContainer } from './DOMmanipulator.js';
 
 import {
@@ -38,14 +38,14 @@ function creteNewProductForm(shoppingList) {
 
     function onSubmit(e) {
         e.preventDefault();
-        const units = productForm.radioContainer.querySelector(
+        const unitsInput = productForm.radioContainer.querySelector(
             'input[name="units"]:checked'
-        ).value;
+        );
         const formValid = productFormValidation(
             productForm.nameInput,
             productForm.quantityInput,
             productForm.categorySelector,
-            units
+            unitsInput
         );
         if (formValid) {
             const productName = productForm.nameInput.value;
@@ -59,8 +59,8 @@ function creteNewProductForm(shoppingList) {
             const category = shoppingList.categoryList.filter(
                 (category, id) => category.name === categoryName && id === categoryId
             )[0];
-
-            const newProduct = new Product(productName, productQuantity, units);
+            const productUnits = unitsInput.value;
+            const newProduct = new Product(productName, productQuantity, productUnits);
             shoppingList.addProductToCategory(newProduct, category);
 
             renderList(shoppingList);

@@ -1,18 +1,18 @@
 const PRODUCTCATEGORIES = [
-  "warzywa",
-  "owoce",
-  "nabiał",
-  "mięso i ryby",
-  "artykuły higieniczne",
-  "pieczywo",
-  "produkty suche",
+    'warzywa',
+    'owoce',
+    'nabiał',
+    'mięso i ryby',
+    'artykuły higieniczne',
+    'pieczywo',
+    'produkty suche',
 ];
 
 const UNITS = {
-  weight: "kg",
-  pcs: "pcs",
+    pcs: 'pieces',
+    weight: 'kg',
 };
 
-const NAME = "myShopping";
+const NAME = 'myShopping';
 
 export { PRODUCTCATEGORIES, UNITS, NAME };
