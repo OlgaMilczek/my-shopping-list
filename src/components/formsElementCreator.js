@@ -43,7 +43,7 @@ function createCategoryInput(categories) {
     for (let categoryId in categories) {
         const category = categories[categoryId];
         let categoryOption = document.createElement('option');
-        categoryOption.value = `${category.name}-${categoryId}`;
+        categoryOption.value = categoryId;
         categoryOption.textContent = category.name;
         categorySelector.appendChild(categoryOption);
     }

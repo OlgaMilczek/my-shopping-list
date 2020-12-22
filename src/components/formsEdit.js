@@ -52,7 +52,7 @@ function editProductForm(shoppingList, category, categoryId, product) {
 
     productForm.nameInput.value = product.name;
     productForm.quantityInput.value = product.quantity;
-    productForm.categorySelector.value = `${category.name}-${categoryId}`;
+    productForm.categorySelector.value = categoryId;
 
     function onSubmit(e) {
         e.preventDefault();
@@ -68,13 +68,10 @@ function editProductForm(shoppingList, category, categoryId, product) {
         if (formValid) {
             const productName = productForm.nameInput.value;
             const productQuantity = productForm.quantityInput.value;
-            const [
-                newCategoryName,
-                newCategoryIdString,
-            ] = productForm.categorySelector.value.split('-');
+            const newCategoryIdString = productForm.categorySelector.value;
             const newCategoryId = Number(newCategoryIdString);
 
-            if (newCategoryName === category.name && categoryId === newCategoryId) {
+            if (categoryId === newCategoryId) {
                 product.editQuantity(productQuantity);
                 product.editName(productName);
                 product.editUnits(units);
@@ -82,7 +79,7 @@ function editProductForm(shoppingList, category, categoryId, product) {
             } else {
                 //Product have new category
                 let newCategory = shoppingList.categoryList.filter((category, id) => {
-                    if (category.name === newCategoryName && id === newCategoryId) {
+                    if (id === newCategoryId) {
                         return category;
                     }
                 })[0];

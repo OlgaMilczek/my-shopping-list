@@ -19,6 +19,7 @@ Live preview: https://olgamilczek.github.io/my-shopping-list/
   - Count total weight of all elements with units weight.
   - Count total number of all pieces elements with units pieces
 - Saving list to LocalStorage.
+- Drag and drop categories. 
 
 ## Installing dependencies
 

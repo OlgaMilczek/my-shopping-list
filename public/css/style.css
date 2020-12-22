@@ -79,9 +79,15 @@ body {
 .shopping-list {
   margin: auto;
   width: 100%;
-  padding: 3rem; }
-  .shopping-list__category:not(:first-child) {
-    padding-top: 2rem; }
+  padding: 3rem;
+  display: flex;
+  flex-direction: column; }
+  .shopping-list__category {
+    display: flex;
+    width: 100%;
+    flex-direction: column; }
+    .shopping-list__category:not(:first-child) {
+      padding-top: 2rem; }
   .shopping-list__category-name {
     font-size: 2rem;
     padding-bottom: 1rem;
